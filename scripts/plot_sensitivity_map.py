@@ -72,11 +72,10 @@ def render_planets(axis):
 def main():
     outfilename = os.path.join(
             os.path.dirname(__file__),
-            '..', 'images', 'plots', 'sensitivitymap.pdf')
+            '..', 'images', 'plots', 'sensitivitymap{}.pdf')
     data_filename = os.path.expanduser(
             os.path.join(
                 '~', 'work', 'WASP', 'DistributionAnalyser', 'fields.h5'))
-
 
 
     with tables.open_file(data_filename) as infile:
@@ -97,20 +96,19 @@ def main():
     panel_width = 4
     panel_height = 3
 
-    with PdfPages(outfilename) as pdfpages:
-        v_range = (0.0, 1.0)
-        vmin, vmax = v_range
+    v_range = (0.0, 1.0)
+    vmin, vmax = v_range
 
-        for data in [orion_detection_map, noprob, prob]:
-            fig, axis = plt.subplots()
-            axis.pcolormesh(period_centres, radius_centres, data,
-                    vmin=vmin, vmax=vmax, cmap=cmap)
-            set_axis_limits(axis)
-            label_axis(axis)
-            plot_roche_limits(axis)
-            render_planets(axis)
-            fig.tight_layout()
-            pdfpages.savefig(fig)
+    for i, data in enumerate([orion_detection_map, noprob, prob]):
+        fig, axis = plt.subplots()
+        axis.pcolormesh(period_centres, radius_centres, data,
+                vmin=vmin, vmax=vmax, cmap=cmap)
+        set_axis_limits(axis)
+        label_axis(axis)
+        plot_roche_limits(axis)
+        render_planets(axis)
+        fig.tight_layout()
+        fig.savefig(outfilename.format(i))
 
 
 if __name__ == '__main__':
