@@ -2,10 +2,10 @@
 
 * Introduction - background
   * dominant migration method uncertain
-  * imprints evidence in orbital period distribution (pile up)
-  * jupiters dominant migration force
+      * imprints evidence in orbital period distribution (pile up)
+      * jupiters dominant migration force
   * most jupiters come from WASP
-  * heavily affected by selection effects
+      * heavily affected by selection effects
 
 * Computing sensitivity map
   * Choose stellar and planet sample to maximise efficiency
@@ -15,6 +15,7 @@
 * Casting underlying distribution
   * Invert observed planets through sensitivity map
   * Peak found at ~4 days
+  * Compare with RV planets
 
 * Consequences...
   * Roche limit consistent with Ford & Rasio
