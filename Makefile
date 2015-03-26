@@ -8,11 +8,10 @@ images/plots/giant_planets.pdf: scripts/plot_jupiter_distributions.py
 images/plots/occurrence-rate.pdf: scripts/plot_underlying_distribution.py
 	python $<
 
-images/plots/sensitivitymap0.pdf: scripts/plot_sensitivity_map.py
+images/plots/sensitivitymap0.pdf images/plots/sensitivitymap1.pdf images/plots/sensitivitymap2.pdf: scripts/plot_sensitivity_map.py
 	python $<
 
-images/plots/sensitivitymap1.pdf: scripts/plot_sensitivity_map.py
-	python $<
+.PHONY: clean
 
-images/plots/sensitivitymap2.pdf: scripts/plot_sensitivity_map.py
-	python $<
+clean:
+	@rm -f images/plots/*.pdf
