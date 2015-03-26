@@ -25,7 +25,7 @@ logger = logging.getLogger(__name__)
 
 def main(args):
     logger.debug(args)
-    df = pd.read_csv('scripts/data/exoplanets.csv').drop(0)
+    df = pd.read_csv('scripts/data/exoplanets.csv', low_memory=False).drop(0)
 
     period_ind = (df['PER'] > 0) & (df['PER'] <= 10)
     giant_ind = ((df['R'] >= 0.8) & (df['R'] <= 2.5) |
