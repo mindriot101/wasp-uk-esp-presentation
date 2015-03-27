@@ -96,13 +96,18 @@ def main():
     panel_width = 4
     panel_height = 3
 
-    v_range = (0.0, 1.0)
-    vmin, vmax = v_range
+    plot_lims = [
+            (0, 1),
+            (0, 0.8),
+            (0, 0.4),
+            ]
 
-    for i, data in enumerate([orion_detection_map, noprob, prob]):
+    for i, (data, lims) in enumerate(zip([orion_detection_map, noprob, prob],
+                                    plot_lims)):
         fig, axis = plt.subplots()
-        axis.pcolormesh(period_centres, radius_centres, data,
-                vmin=vmin, vmax=vmax, cmap=cmap)
+        mappable = axis.pcolormesh(period_centres, radius_centres, data,
+                vmin=lims[0], vmax=lims[1], cmap=cmap)
+        fig.colorbar(mappable, ax=axis)
         set_axis_limits(axis)
         label_axis(axis)
         plot_roche_limits(axis)
