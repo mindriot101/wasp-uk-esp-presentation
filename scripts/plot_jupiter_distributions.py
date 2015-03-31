@@ -31,7 +31,7 @@ def main(args):
     giant_ind = ((df['R'] >= 0.8) & (df['R'] <= 2.5) |
             (df['MSINI'] >= 0.1) & (df['MSINI'] < 13))
 
-    df = df[period_ind & giant_ind]
+    df = df[giant_ind]
 
     wasp_ind = df['NAME'].str.contains('WASP')
     wasp = df[wasp_ind]
@@ -44,14 +44,15 @@ def main(args):
 
     lims = (0.6, 10)
     axis.hist([wasp.PER.values, rv.PER.values, kepler.PER.values],
-            bins=np.logspace(np.log10(0.7), np.log10(lims[1]), 8),
+            bins=np.logspace(np.log10(0.68399037867067902),
+                np.log10(50), 13),
             histtype='step', label=['WASP', 'RV', 'Kepler'],
-            lw=1.)
+            lw=2.)
     axis.set_xscale('log')
     axis.legend(loc='best')
     axis.xaxis.set_major_locator(plt.LogLocator(subs=[1, 2, 5]))
     axis.xaxis.set_major_formatter(plt.LogFormatter(labelOnlyBase=False))
-    axis.set_xlim(*lims)
+    axis.set_xlim(0.6, 20)
     axis.set_xlabel(r'Orbital period / days')
 
     fig.tight_layout()
