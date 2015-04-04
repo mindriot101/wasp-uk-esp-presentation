@@ -2,3 +2,4 @@ venv
 .DS_Store
 images/plots/*
 !images/plots/.gitkeep
+petes_talk
